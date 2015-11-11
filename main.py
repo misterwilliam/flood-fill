@@ -92,6 +92,13 @@ class FloodFillTest(unittest.TestCase):
         floodPath = GetFloodFillPath(Point(0, 0), data)
         self.assertEqual(floodPath, set([Point(0,0), Point(0, 1)]))
 
+    def test_SinglePixelCase(self):
+        data = [ [0, 0, 1],
+                 [1, 1, 1],
+                 [0, 1, 1] ]
+        floodPath = GetFloodFillPath(Point(2, 0), data)
+        self.assertEqual(floodPath, set([Point(2, 0)]))
+
 
 if __name__ == '__main__':
     unittest.main()
