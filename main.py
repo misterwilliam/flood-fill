@@ -25,7 +25,7 @@ def IsInBounds(point, width, height):
     return 0 <= point.x < width and 0 <= point.y < height
 
 
-def FindSameColorConnectedPoints(root, data, width, height):
+def FindConnectedPointsWithSameColor(root, data, width, height):
     """Returns list of points connected to |root| that are the same color as root"""
     todo = collections.deque([root])
     seenPoints = set()
@@ -46,7 +46,7 @@ def FindSameColorConnectedPoints(root, data, width, height):
 
 def GetFloodFillPath(point, data):
     """Returns list of Point's to flood fill"""
-    return FindSameColorConnectedPoints(point, data, len(data[0]), len(data))
+    return FindConnectedPointsWithSameColor(point, data, len(data[0]), len(data))
 
 
 # TESTS ------------------------------
@@ -61,7 +61,7 @@ class GenAdjacentPointsTest(unittest.TestCase):
                          adjacentPoints)
 
 
-class FindSameColorConnectedPointsTest(unittest.TestCase):
+class FindConnectedPointsWithSameColorTest(unittest.TestCase):
 
     def test_ExampleOne(self):
         data = [
@@ -69,7 +69,7 @@ class FindSameColorConnectedPointsTest(unittest.TestCase):
             [1, 1, 1],
             [0, 1, 1],
         ]
-        self.assertEqual(FindSameColorConnectedPoints(Point(0,0), data, 3, 3),
+        self.assertEqual(FindConnectedPointsWithSameColor(Point(0,0), data, 3, 3),
             set([Point(0,0), Point(0, 1)]))
 
     def test_ExampleTwo(self):
@@ -78,7 +78,7 @@ class FindSameColorConnectedPointsTest(unittest.TestCase):
             [1, 1, 1],
             [0, 1, 1],
         ]
-        self.assertEqual(FindSameColorConnectedPoints(Point(1,1), data, 3, 3),
+        self.assertEqual(FindConnectedPointsWithSameColor(Point(1,1), data, 3, 3),
             set([Point(1,1), Point(1, 0), Point(0, 2), Point(1, 2), Point(2, 1),
                  Point(2, 2)]))
 
