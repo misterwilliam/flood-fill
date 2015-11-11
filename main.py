@@ -1,7 +1,12 @@
 import collections
 import unittest
 
-
+# Implements a flood fill operation
+# Example Usage:
+# data = [ [0, 0, 1],
+#          [1, 1, 1],
+#          [0, 1, 1] ]
+# GetFloodFillPath(Point(0, 0), data)  # returns set([Point(0,0), Point(0, 1)])
 
 Point = collections.namedtuple('Point', ['x', 'y'])
 
@@ -76,6 +81,16 @@ class FindSameColorConnectedPointsTest(unittest.TestCase):
         self.assertEqual(FindSameColorConnectedPoints(Point(1,1), data, 3, 3),
             set([Point(1,1), Point(1, 0), Point(0, 2), Point(1, 2), Point(2, 1),
                  Point(2, 2)]))
+
+
+class FloodFillTest(unittest.TestCase):
+
+    def test_Example(self):
+        data = [ [0, 0, 1],
+                 [1, 1, 1],
+                 [0, 1, 1] ]
+        floodPath = GetFloodFillPath(Point(0, 0), data)
+        self.assertEqual(floodPath, set([Point(0,0), Point(0, 1)]))
 
 
 if __name__ == '__main__':
